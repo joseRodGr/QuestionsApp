@@ -4,6 +4,7 @@ namespace API.Models
     {
         public int UserId { get; set; }
         public int QuestionId { get; set; }
+        public bool hasAnswered { get; set; } = false;
         public AppUser User{ get; set; }
         public Question Question { get; set; }
     }

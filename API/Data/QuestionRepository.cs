@@ -26,12 +26,17 @@ namespace API.Data
             _context.Questions.Add(question);
         }
 
+        public void AddUserQuestion(UserQuestion userQuestion)
+        {
+            _context.UserQuestions.Add(userQuestion);
+        }
+
         public void DeleteQuestion(Question question)
         {
             _context.Questions.Remove(question);
         }
 
-        public async Task<Question> GetQuestionById(int id)
+        public async Task<Question> GetQuestionAsked(int id)
         {
             return await _context.Questions
                 .Include(q => q.Answers)
@@ -40,7 +45,17 @@ namespace API.Data
     
         }
 
-        public async Task<IEnumerable<QuestionDto>> GetQuestionsByUsernameAsync(string username)
+        public async Task<Question> GetQuestionReceived(int userId, int questionId)
+        {
+            return await _context.UserQuestions
+                .Where(uq => uq.UserId == userId && uq.QuestionId == questionId)
+                .Select(uq => uq.Question)
+                .Include(q => q.Creator)
+                .SingleOrDefaultAsync();
+            
+        }
+
+        public async Task<IEnumerable<QuestionDto>> GetQuestionsAsked(string username)
         {
 
             return await _context.Questions
@@ -48,6 +63,16 @@ namespace API.Data
                 .ProjectTo<QuestionDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
 
+        }
+
+        public async Task<IEnumerable<QuestionReceivedDto>> GetQuestionsReceived(string username)
+        {
+            return await _context.UserQuestions
+                .Where(uq => uq.User.UserName == username)
+                .Select(uq => uq.Question)
+                .ProjectTo<QuestionReceivedDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+     
         }
 
         public void UpdateQuestion(Question question)

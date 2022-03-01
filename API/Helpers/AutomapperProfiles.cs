@@ -13,11 +13,21 @@ namespace API.Helpers
                     opt.MapFrom(src => src.Creator.UserName);
                 });
             CreateMap<QuestionDto, Question>();
+
+            CreateMap<Question, QuestionReceivedDto>()
+                .ForMember(dest => dest.CreatorUsername, opt => {
+                    opt.MapFrom(src => src.Creator.UserName);
+                });
+
             CreateMap<QuestionCreateDto, Question>();
+            CreateMap<QuestionUpdateDto, Question>();
+
             CreateMap<RegisterDto, AppUser>();
             CreateMap<AnswerDto, Answer>();
             CreateMap<Answer, AnswerDto>();
-            CreateMap<AnswerCreateDto, Answer>();
+            CreateMap<AnswerContentDto, Answer>();
+
+            CreateMap<Answer, AnswerReceivedDto>();
         }
     }
 }

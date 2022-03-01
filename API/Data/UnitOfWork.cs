@@ -7,6 +7,7 @@ namespace API.Data
     public class UnitOfWork : IUnitOfWork
     {
         private IQuestionRepository _questionRepository;
+        private IAnswerRepository _answerRepository;
         private readonly DataContext _context;
         private readonly IMapper _mapper;
 
@@ -31,7 +32,16 @@ namespace API.Data
             }
         }
 
-
+        public IAnswerRepository AnswerRepository
+        {
+            get{
+                if(_answerRepository == null){
+                    _answerRepository = new AnswerRepository(_context);
+                }
+                return _answerRepository;
+            }
+        }
+          
 
         public async Task<bool> SaveAllAsync()
         {

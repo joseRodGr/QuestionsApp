@@ -1,6 +1,8 @@
+using System.Collections.Generic;
+
 namespace API.Dtos
 {
-    public class AnswerCreateDto
+    public class QuestionUpdateDto
     {
         public string Content { get; set; }
     }
