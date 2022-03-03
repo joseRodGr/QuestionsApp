@@ -11,7 +11,7 @@ namespace API.Models
         public int CreatorId { get; set; }
         public AppUser Creator { get; set; }
         public ICollection<Answer> Answers { get; set; }
-        public ICollection<UserQuestion> QUestionsUsers { get; set; }
+        public ICollection<UserQuestion> QuestionsUsers { get; set; }
 
     }
 }

@@ -34,6 +34,7 @@ namespace API.Data
         public async Task<UserQuestion> getUserQuestion(int userId, int questionId)
         {
             return await _context.UserQuestions
+                .Include(uq => uq.Question)
                 .SingleOrDefaultAsync(uq => uq.UserId == userId && uq.QuestionId == questionId);
 
         }

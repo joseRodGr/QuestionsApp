@@ -36,18 +36,23 @@ namespace API.Data
 
             builder.Entity<UserQuestion>()
                 .HasKey(k => new{k.UserId, k.QuestionId});
+            // builder.Entity<UserQuestion>()
+            //     .HasIndex(k => new{k.UserId, k.QuestionId});
 
-            builder.Entity<AppUser>()
-                .HasMany(u => u.QUestionsUsers)
-                .WithOne(u => u.User)
-                .HasForeignKey(u => u.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
+            // builder.Entity<UserQuestion>()
+            //     .HasAlternateKey(k => new{k.UserId, k.QuestionId});
+
+            // builder.Entity<AppUser>()
+            //     .HasMany(u => u.QuestionsUsers)
+            //     .WithOne(u => u.User)
+            //     .HasForeignKey(u => u.UserId)
+            //     .OnDelete(DeleteBehavior.Cascade);
             
             builder.Entity<Question>()
-                .HasMany(q => q.QUestionsUsers)
+                .HasMany(q => q.QuestionsUsers)
                 .WithOne(q => q.Question)
                 .HasForeignKey(q => q.QuestionId)
-                .OnDelete(DeleteBehavior.NoAction);       
+                .OnDelete(DeleteBehavior.ClientCascade);       
         }
         
     }

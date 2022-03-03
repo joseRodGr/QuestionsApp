@@ -36,6 +36,15 @@ namespace API.Data
             _context.Questions.Remove(question);
         }
 
+        public async Task<Question> GetQuestion(int id)
+        {
+            return await _context.Questions
+                .Include(q => q.Answers)
+                .Include(q => q.Creator)
+                .Include(q => q.QuestionsUsers)
+                .SingleOrDefaultAsync(q => q.Id == id);
+        }
+
         public async Task<Question> GetQuestionAsked(int id)
         {
             return await _context.Questions
@@ -48,11 +57,12 @@ namespace API.Data
         public async Task<Question> GetQuestionReceived(int userId, int questionId)
         {
             return await _context.UserQuestions
+                .Include(uq => uq.Question)
+                .Include(uq => uq.Question.Answers)
+                .Include(uq => uq.Question.Creator)
                 .Where(uq => uq.UserId == userId && uq.QuestionId == questionId)
                 .Select(uq => uq.Question)
-                .Include(q => q.Creator)
                 .SingleOrDefaultAsync();
-            
         }
 
         public async Task<IEnumerable<QuestionDto>> GetQuestionsAsked(string username)

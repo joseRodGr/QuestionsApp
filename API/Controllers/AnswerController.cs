@@ -59,7 +59,7 @@ namespace API.Controllers
             return BadRequest("Problem deleting answer");
         }
 
-        [HttpPost("add/{id}")]
+        [HttpPost("add/{questionId}")]
         public async Task<ActionResult<AnswerDto>> AddAnswer(int questionId, AnswerContentDto answerContentDto)
         {
             var question = await _unitOfWork.QuestionRepository.GetQuestionAsked(questionId);
@@ -90,6 +90,8 @@ namespace API.Controllers
             var userQuestion = await _unitOfWork.AnswerRepository.getUserQuestion(User.GetId(), answer.QuestionId);
 
             if(userQuestion == null) return Unauthorized();
+
+            if(!userQuestion.Question.OpenQuestion) return BadRequest("The question is already closed");
 
             if(userQuestion.hasAnswered) return BadRequest("The question already has been answered");
 

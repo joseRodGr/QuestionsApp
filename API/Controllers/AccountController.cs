@@ -72,7 +72,7 @@ namespace API.Controllers
             
             return await _userManager.Users.AnyAsync(u => u.UserName == username.ToLower());
         }
-    
+
 
     }
 }

@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Dtos;
@@ -75,7 +74,6 @@ namespace API.Controllers
 
             if (await _unitOfWork.SaveAllAsync())
             {
-
                 var questionSaved = await _unitOfWork.QuestionRepository.GetQuestionAsked(question.Id);
                 return CreatedAtRoute("GetQuestion", new { id = question.Id }, _mapper.Map<QuestionDto>(questionSaved));
             }
@@ -130,7 +128,7 @@ namespace API.Controllers
             return BadRequest("Failed to update the question");
         }
 
-        [HttpPut("close-question/{id}")]
+        [HttpPut("open-close-question/{id}")]
         public async Task<IActionResult> CloseQuestion(int id)
         {
             var question = await _unitOfWork.QuestionRepository.GetQuestionAsked(id);
@@ -139,7 +137,7 @@ namespace API.Controllers
 
             if(question.Creator.UserName != User.GetUsername()) return Unauthorized();
 
-            question.OpenQuestion = false;
+            question.OpenQuestion = !question.OpenQuestion;
 
             _unitOfWork.QuestionRepository.UpdateQuestion(question);
 
@@ -152,7 +150,7 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteQuestion(int id)
         {
-            var question = await _unitOfWork.QuestionRepository.GetQuestionAsked(id);
+            var question = await _unitOfWork.QuestionRepository.GetQuestion(id);
 
             if(question == null) return NotFound("Could not find question");
 

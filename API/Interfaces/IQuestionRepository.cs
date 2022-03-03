@@ -10,6 +10,7 @@ namespace API.Interfaces
          Task<IEnumerable<QuestionDto>>GetQuestionsAsked(string username);
          Task<IEnumerable<QuestionReceivedDto>> GetQuestionsReceived(string username);
          Task<Question>GetQuestionAsked(int id);
+         Task<Question> GetQuestion(int id);
          Task<Question>GetQuestionReceived(int userId, int questionId);
          void AddQuestion(Question question);
          void AddUserQuestion(UserQuestion userQuestion);

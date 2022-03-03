@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220227235756_InitialCreate")]
+    [Migration("20220303183720_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -171,6 +171,9 @@ namespace API.Data.Migrations
                     b.Property<bool>("OpenQuestion")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("Shared")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorId");
@@ -185,6 +188,9 @@ namespace API.Data.Migrations
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("hasAnswered")
+                        .HasColumnType("bit");
 
                     b.HasKey("UserId", "QuestionId");
 
@@ -323,15 +329,15 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Models.UserQuestion", b =>
                 {
                     b.HasOne("API.Models.Question", "Question")
-                        .WithMany("QUestionsUsers")
+                        .WithMany("QuestionsUsers")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("API.Models.AppUser", "User")
-                        .WithMany("QUestionsUsers")
+                        .WithMany("QuestionsUsers")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Question");
@@ -384,7 +390,7 @@ namespace API.Data.Migrations
                 {
                     b.Navigation("QuestionsCreated");
 
-                    b.Navigation("QUestionsUsers");
+                    b.Navigation("QuestionsUsers");
 
                     b.Navigation("UsersRoles");
                 });
@@ -393,7 +399,7 @@ namespace API.Data.Migrations
                 {
                     b.Navigation("Answers");
 
-                    b.Navigation("QUestionsUsers");
+                    b.Navigation("QuestionsUsers");
                 });
 #pragma warning restore 612, 618
         }
