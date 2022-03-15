@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="control-panel">
+        <div class="user-panel">
+            <div *ngIf="(accountService.currentUser$ | async) as user" class="image">
+                {{user.username | uppercase | slice:0:2}}
+            </div>
+            <div *ngIf="(accountService.currentUser$ | async) as user" class="username">
+                {{user.username | titlecase}}
+            </div>   
+        </div>
+        <div class="options-tittle">Questions</div>
+        <div class="options-buttons">
+            <button class="button" [ngClass]="'active'" routerLink="received" routerLinkActive="active">Received</button>
+            <button class="button" routerLink="asked" routerLinkActive="active">Asked</button>
+        </div>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

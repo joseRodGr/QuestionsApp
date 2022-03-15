@@ -1,0 +1,39 @@
+<div class="form-container">
+    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+        <h1>Sign in</h1>
+        
+        <div class="form-group" >
+            <input 
+                class="box" 
+                type="text" 
+                name="username" 
+                [(ngModel)] = "model.username"
+                #username="ngModel" 
+                placeholder ="Username" 
+                required
+                minlength="3"
+            >
+            <div *ngIf="username.touched && !username.valid">
+                <div *ngIf="username?.errors?.required"><span>* Username is required</span></div>
+                <div *ngIf="username?.errors?.minlength"><span>* Username must have at least 3 characters</span></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input 
+                class="box" 
+                type="password" 
+                name="password" 
+                [(ngModel)]= "model.password" 
+                placeholder="Password"
+                #password="ngModel" 
+                required
+            >   
+            <div *ngIf="password.touched && !password.valid">
+                <div *ngIf="password?.errors?.required"><span>* Password is required</span></div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+    </form>
+</div>

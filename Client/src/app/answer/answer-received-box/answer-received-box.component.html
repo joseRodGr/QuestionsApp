@@ -1,0 +1,7 @@
+<div *ngIf="answer" [class.selected]="isSelected">
+    <a class="answer" [class.selected]="isSelected" (click)="chooseAnswer()">
+        <div class="content">
+            {{answer.content}}
+        </div>
+    </a>
+</div>

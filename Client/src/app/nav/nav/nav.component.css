@@ -1,0 +1,53 @@
+
+
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: cornflowerblue;
+    height: 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.navbar .menu{
+    display: flex;
+    list-style: none;
+}
+
+/* .logo{
+    margin: 0 50px;
+} */
+
+.logo .fa-question-circle{
+    font-size: 2.5rem;
+}
+
+.navbar .nav-link{
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    transition: all .3s linear;
+}
+
+/* .navbar .nav-buttons{
+    margin: 0 50px;
+} */
+
+.menu .nav-item{
+    padding: .5rem;
+}
+
+
+.menu .nav-item .nav-link{
+    padding: .5rem 1rem;
+    border-radius: 5rem;
+    font-weight: 500;
+}
+
+.menu .nav-item .nav-link:hover{
+    background: #fff;
+}
+

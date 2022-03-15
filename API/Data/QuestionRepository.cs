@@ -54,15 +54,20 @@ namespace API.Data
     
         }
 
-        public async Task<Question> GetQuestionReceived(int userId, int questionId)
+        public async Task<QuestionReceivedDto> GetQuestionReceived(int userId, int questionId)
         {
+
             return await _context.UserQuestions
-                .Include(uq => uq.Question)
-                .Include(uq => uq.Question.Answers)
-                .Include(uq => uq.Question.Creator)
                 .Where(uq => uq.UserId == userId && uq.QuestionId == questionId)
-                .Select(uq => uq.Question)
-                .SingleOrDefaultAsync();
+                .Select(uq => new QuestionReceivedDto{
+                    Id = uq.QuestionId,
+                    Content = uq.Question.Content,
+                    CreatorUsername = uq.Question.Creator.UserName,
+                    OpenQuestion = uq.Question.OpenQuestion,
+                    hasAnswered = uq.hasAnswered,
+                    Answers = _mapper.Map<ICollection<AnswerReceivedDto>>(uq.Question.Answers)
+                }).SingleOrDefaultAsync();
+
         }
 
         public async Task<IEnumerable<QuestionDto>> GetQuestionsAsked(string username)
@@ -77,11 +82,17 @@ namespace API.Data
 
         public async Task<IEnumerable<QuestionReceivedDto>> GetQuestionsReceived(string username)
         {
+
             return await _context.UserQuestions
                 .Where(uq => uq.User.UserName == username)
-                .Select(uq => uq.Question)
-                .ProjectTo<QuestionReceivedDto>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+                .Select(uq => new QuestionReceivedDto{
+                    Id = uq.QuestionId,
+                    Content = uq.Question.Content,
+                    CreatorUsername = uq.Question.Creator.UserName,
+                    OpenQuestion = uq.Question.OpenQuestion,
+                    hasAnswered = uq.hasAnswered,
+                    Answers = _mapper.Map<ICollection<AnswerReceivedDto>>(uq.Question.Answers)
+            }).ToListAsync();
      
         }
 

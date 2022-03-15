@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+
+.container .content{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container .content h2{
+    margin-bottom: 1.2rem;
+}
+
+.container .content p{
+    margin-bottom: 1.2rem;
+    line-height: 1.5rem;
+}
+
+.container .image img{
+    height: 600px;
+}
+
+.content .btn{
+    background: cornflowerblue;
+    font-weight: 600;
+}

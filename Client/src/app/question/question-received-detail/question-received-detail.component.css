@@ -1,0 +1,51 @@
+.question-info{
+    display: flex;
+    justify-content: space-between;
+    background: #eee;
+    padding: 2rem;
+    
+}
+
+.question-info .content{
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+}
+
+.question-info .username span{
+    color: cornflowerblue;
+    font-weight: 600;
+}
+
+.question-info .open-question{
+    font-weight: 600;
+}
+
+.container .answer-header{
+    text-align: center;
+    padding: .5rem 2rem;
+    border-bottom: 3px solid black;
+}
+
+.answer-header span{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.answers-info .answer-button{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.answer-button .btn{
+    background: cornflowerblue;
+    font-size: 1rem;
+}
+
+.open{
+    color: green;
+}
+
+.closed{
+    color: orange;
+}

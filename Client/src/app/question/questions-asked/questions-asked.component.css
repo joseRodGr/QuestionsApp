@@ -1,0 +1,29 @@
+
+.container .title{
+    padding: 1.5rem 2rem;
+    background: #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.container .title .btn{
+    width: max-content;
+    background: cornflowerblue;
+    border-radius: .5rem;
+}
+
+.container .question-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 2rem;
+    border-bottom: 3px solid black;
+}
+
+.question-header span{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+

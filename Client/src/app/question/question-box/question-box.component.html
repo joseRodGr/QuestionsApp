@@ -1,0 +1,14 @@
+<div *ngIf="question">
+<!-- <div> -->
+    <a class="question" routerLink="{{question.id}}">
+        <div class="username">
+            {{question.creatorUsername | titlecase}}
+        </div>
+        <div class="content">
+            {{question.content}}
+        </div>
+        <div [ngClass]="(question.openQuestion ? 'open' : 'closed')" class="status">
+            {{question.openQuestion? 'open': 'closed'}}
+        </div>
+    </a>
+</div>

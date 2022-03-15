@@ -1,0 +1,22 @@
+<header class="header">
+    <nav class="navbar">
+        <a href="" class="logo nav-link">
+            <i class="fa fa-question-circle"></i>
+        </a>
+        <ul *ngIf="(accountService.currentUser$ | async) === null" class="menu">
+            <li class="nav-item"><a href="" class="nav-link">Caracteristicas</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Soporte</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Contacto</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <ng-container *ngIf="(accountService.currentUser$ | async) === null">
+                <button class="btn" routerLink="/login">Login</button>
+                <button class="btn">Register</button>
+            </ng-container>
+            <ng-container *ngIf="accountService.currentUser$ | async">
+                <button class="btn" (click)="logout()">Logout</button>
+            </ng-container>
+    
+        </div>
+    </nav>
+</header>

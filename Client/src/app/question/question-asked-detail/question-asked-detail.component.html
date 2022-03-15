@@ -1,0 +1,43 @@
+<div *ngIf="question" class="container">
+    <div class="question-info">
+        <div class="info">
+            <div *ngIf="!isEdit" class="content">
+                {{question.content}}
+            </div>
+            <div *ngIf="isEdit" class="edit">
+                <form #editQuestionForm ="ngForm" (ngSubmit)="editQuestion()" autocomplete="off">
+                    <input 
+                        type="text"
+                        name="newQuestion" 
+                        #newInputQuestion 
+                        placeholder="Enter the question"
+                        [(ngModel)]="newQuestion"
+                        required
+                    >
+                    <button type="submit">Edit</button>
+                </form>
+            </div>
+            <div [ngClass]="(question.openQuestion ? 'open' : 'closed')" class="open-question">
+                {{question.openQuestion ? '(open)' : '(closed)'}}
+            </div>
+        </div>
+        <div class="buttons">
+            <button (click)="invertEdit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="answer-header">
+        <div class="fisrt">
+            <span>Answer</span>
+            <span>Votes</span>
+        </div>
+        <span>Settings</span>
+    </div>
+    <div class="answers-info">
+        <div *ngFor="let answer of question.answers" class="answer-container">
+            <app-answer-box [answer]="answer"></app-answer-box>
+        </div>
+    </div>
+    <div class="button-container">
+        <button class="btn">Add Answer</button>
+    </div>
+</div>

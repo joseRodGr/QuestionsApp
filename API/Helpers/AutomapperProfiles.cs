@@ -1,3 +1,4 @@
+using System.Linq;
 using API.Dtos;
 using API.Models;
 using AutoMapper;
@@ -28,6 +29,10 @@ namespace API.Helpers
             CreateMap<AnswerContentDto, Answer>();
 
             CreateMap<Answer, AnswerReceivedDto>();
+
+            CreateMap<AnswerReceivedDto, AnswerReceivedDto>();
+
+                
         }
     }
 }

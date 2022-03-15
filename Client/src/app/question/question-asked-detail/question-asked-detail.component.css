@@ -1,0 +1,95 @@
+.question-info{
+    background: #eee;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.question-info .content{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.edit form input{
+    /* padding: .3rem; */
+    width: 300px;
+    outline: none;
+    margin-right: .5rem;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #1115;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.edit form input::placeholder{
+    font-weight: normal;
+    font-size: 1.3rem;
+}
+
+.edit form button{
+    padding: .3rem;
+    border: none;
+    background: cornflowerblue;
+    color: #fff;
+    border-radius: .25rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.question-info .buttons button{
+    border: none;
+    cursor: pointer;
+}
+
+.question-info .buttons button:hover{
+    color: cornflowerblue;
+}
+
+.question-info .buttons i{
+    font-size: 1.5rem;
+}
+
+.open-question{
+    font-weight: 600;
+}
+
+.container .answer-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 2rem;
+    border-bottom: 3px solid black;
+}
+
+.answer-header .fisrt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: greenyellow; */
+    width: 50%;
+
+}
+
+.answer-header span{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.open{
+    color: green;
+}
+
+.closed{
+    color: orange;
+}
+
+.button-container{
+    /* text-align: center; */
+    margin: 1rem 0;
+}
+
+.button-container .btn{
+    font-size: 1rem;
+    background: cornflowerblue;
+}

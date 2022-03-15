@@ -59,7 +59,7 @@ namespace API.Controllers
 
             if (question == null) return NotFound("Could not find the question");
 
-            return _mapper.Map<QuestionReceivedDto>(question);
+            return question;
 
         }
 

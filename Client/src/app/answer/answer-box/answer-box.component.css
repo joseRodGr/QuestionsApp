@@ -1,0 +1,68 @@
+.answer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eee;
+    padding: .6rem 2rem;
+    text-decoration: none;
+    color: #111;
+}
+
+.answer-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    padding-right: 1rem;
+}
+
+.edit form{
+    display: flex;
+}
+
+.edit form input{
+  padding: .1rem; 
+  margin-right: .2rem;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 1px solid #1116;
+  font-size: 1rem;
+  width: 200px;
+}
+
+.edit form button{
+    background: cornflowerblue;
+    padding: .2rem .5rem;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    margin: 0 .2rem;
+    border-radius: .2rem;
+    cursor: pointer;
+}
+
+
+.answer:hover{
+    background: #1113;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons button{
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    padding: .3rem 1rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.buttons button:hover{
+    color: #fff;
+    background: cornflowerblue;
+}

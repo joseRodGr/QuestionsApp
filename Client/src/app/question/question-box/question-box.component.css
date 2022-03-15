@@ -1,0 +1,25 @@
+.question{
+    display: flex;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+    background: #eee;
+    text-decoration: none;
+    color: #111;
+}
+
+.question:hover{
+    background: #1113;
+}
+
+.status{
+    font-weight: 600;
+}
+
+.open{
+    color: green;
+}
+
+.closed{
+    color: orange;
+}

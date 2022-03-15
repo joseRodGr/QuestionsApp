@@ -1,0 +1,18 @@
+.container .title{
+    padding: 2rem;
+    background: #eee;
+}
+
+
+.container .question-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 2rem;
+    border-bottom: 3px solid black;
+}
+
+.question-header span{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
