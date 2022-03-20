@@ -9,6 +9,7 @@ import { Answer } from 'src/app/_models/answer';
 export class AnswerReceivedBoxComponent implements OnInit {
 
   @Input() answer!: Partial<Answer>;
+  @Input() hasAnswered! : boolean | undefined;
   @Output() selectAnswer = new EventEmitter<number>()
   isSelected: boolean = false;
   

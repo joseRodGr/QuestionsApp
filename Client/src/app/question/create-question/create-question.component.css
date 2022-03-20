@@ -1,0 +1,75 @@
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+    align-content: center;
+}
+
+.container form{
+    text-align: center;
+    background: #eee;
+    padding: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+form .box{
+    padding: .5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #1117;
+    outline: none;
+}
+
+form .box::placeholder{
+    font-weight: normal;
+    opacity: .8;
+}
+
+.container .form-group{
+    padding: 1rem;
+}
+
+
+.container form button{
+    font-size: 1rem; 
+    background: cornflowerblue;
+}
+
+.container form button i{
+    margin-right: 1rem;
+}
+
+.container form button:hover{
+    background: rgb(69, 119, 211);
+}
+
+.separator{
+    background: #111b;
+    padding: .5rem;
+    color: #fff;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+}
+
+.answers-container .button-container{
+    text-align: center;
+}
+
+.button-container button{
+    background: cornflowerblue;
+    font-size: 1rem;
+}
+
+.button-container button:hover{
+    background: rgb(69, 119, 211);
+}
+
+.button-container button i{
+    margin-right: 1rem;
+}

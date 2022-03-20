@@ -9,7 +9,7 @@
     </div>
     <div class="questions-content">
         <div class="question-container" *ngFor="let question of questions">
-            <app-question-box [question]="question"></app-question-box>
+            <app-question-box [question]="question" [type]="'received'"></app-question-box>
         </div>
     </div>
 </div>

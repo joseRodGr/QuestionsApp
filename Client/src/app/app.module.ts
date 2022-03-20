@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav/nav.component';
 import { HomeComponent } from './home/home/home.component';
 import { LoginComponent } from './login/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainPanelComponent } from './main/main-panel/main-panel.component';
 import { QuestionsAskedComponent } from './question/questions-asked/questions-asked.component';
 import { QuestionBoxComponent } from './question/question-box/question-box.component';
@@ -22,6 +22,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './_modules/material/material.module';
 import { WarningDialogComponent } from './_dialogs/warning-dialog/warning-dialog.component';
 import { CreateQuestionComponent } from './question/create-question/create-question.component';
+import { AnswerCreateBoxComponent } from './answer/answer-create-box/answer-create-box.component';
+import { RegisterComponent } from './register/register.component';
+import { CreateDialogComponent } from './_dialogs/create-dialog/create-dialog.component';
+import { ShareDialogComponent } from './_dialogs/share-dialog/share-dialog.component';
+import { GenericBoxComponent } from './_dialogs/generic-box/generic-box.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,12 @@ import { CreateQuestionComponent } from './question/create-question/create-quest
     AnswerBoxComponent,
     AnswerReceivedBoxComponent,
     WarningDialogComponent,
-    CreateQuestionComponent
+    CreateQuestionComponent,
+    AnswerCreateBoxComponent,
+    RegisterComponent,
+    CreateDialogComponent,
+    ShareDialogComponent,
+    GenericBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,8 @@ import { CreateQuestionComponent } from './question/create-question/create-quest
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

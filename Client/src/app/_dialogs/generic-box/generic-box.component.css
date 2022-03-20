@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding: .2rem 1rem;
+    background: #eee;
+    margin: .1rem 0;
+}
+
+.container button{
+    border: none;
+    cursor: pointer;
+}
+
+.container button i{
+    color: #111a;
+}
+
+.container button:hover i{
+    color: cornflowerblue;
+}

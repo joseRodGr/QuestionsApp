@@ -1,5 +1,4 @@
 <div *ngIf="question">
-<!-- <div> -->
     <a class="question" routerLink="{{question.id}}">
         <div class="username">
             {{question.creatorUsername | titlecase}}
@@ -8,7 +7,14 @@
             {{question.content}}
         </div>
         <div [ngClass]="(question.openQuestion ? 'open' : 'closed')" class="status">
-            {{question.openQuestion? 'open': 'closed'}}
+            <div (click)="$event.stopPropagation()" (click)="toggleStatus()" *ngIf="type === 'asked'">
+                <mat-slide-toggle color="primary" [ngModel]= "question.openQuestion">
+                    {{question.openQuestion? 'open': 'closed'}}
+                </mat-slide-toggle>
+            </div>
+            <div *ngIf="type==='received'">
+                {{question.openQuestion? 'open': 'closed'}}
+            </div>
         </div>
     </a>
 </div>

@@ -2,7 +2,7 @@
     <div class="question-info">
         <div class="left">
             <div class="content">
-                {{question.content}}
+                {{question.content}} <span *ngIf="question.hasAnswered">(Already answered)</span>
             </div>
             <div class="username">
                 Asked by: <span>{{question.creatorUsername | titlecase}}</span>
@@ -17,10 +17,16 @@
     </div>
     <div *ngIf="question.answers" class="answers-info">
         <div *ngFor="let answer of question.answers" class="answer-container">
-            <app-answer-received-box [answer]="answer" (selectAnswer)="selectAnswerId($event)"></app-answer-received-box>
+            <app-answer-received-box [answer]="answer" (selectAnswer)="selectAnswerId($event)" [hasAnswered]="question.hasAnswered"></app-answer-received-box>
         </div>
         <div class="answer-button">
-            <button class="btn" (click)="chooseAnswer()">Guardar respuesta</button>
+            <button 
+                [disabled]="question.hasAnswered"
+                class="btn"
+                [class.forbidden]="question.hasAnswered"
+                (click)="chooseAnswer()"
+                >Guardar respuesta
+            </button>
         </div>
     </div>
 </div>

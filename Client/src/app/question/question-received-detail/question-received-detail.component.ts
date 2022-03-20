@@ -2,6 +2,7 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnswerReceivedBoxComponent } from 'src/app/answer/answer-received-box/answer-received-box.component';
 import { Question } from 'src/app/_models/question';
+import { AnswerService } from 'src/app/_services/answer.service';
 import { QuestionService } from 'src/app/_services/question.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class QuestionReceivedDetailComponent implements OnInit {
   answerIdSelected!: Number;
   @ViewChildren(AnswerReceivedBoxComponent) answerBoxes! : QueryList<AnswerReceivedBoxComponent>;
 
-  constructor(private questionService: QuestionService, private route: ActivatedRoute) { }
+  constructor(private questionService: QuestionService, private route: ActivatedRoute,
+    private answerService: AnswerService) { }
 
   ngOnInit(): void {
     this.loadQuestion();
@@ -47,10 +49,9 @@ export class QuestionReceivedDetailComponent implements OnInit {
 
   chooseAnswer(){
     if(this.answerIdSelected){
-      console.log(this.answerIdSelected);
-    }
-    else{
-      console.log('choose an option');
+      this.answerService.chooseAnswer(Number(this.answerIdSelected)).subscribe(() => {
+        this.question.hasAnswered = true;
+      })
     }
   }
 

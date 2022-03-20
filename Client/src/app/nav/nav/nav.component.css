@@ -17,24 +17,17 @@
     list-style: none;
 }
 
-/* .logo{
-    margin: 0 50px;
-} */
-
 .logo .fa-question-circle{
     font-size: 2.5rem;
 }
 
 .navbar .nav-link{
     text-decoration: none;
-    color: black;
+    color: #111b;
     font-size: 1.2rem;
     transition: all .3s linear;
 }
 
-/* .navbar .nav-buttons{
-    margin: 0 50px;
-} */
 
 .menu .nav-item{
     padding: .5rem;

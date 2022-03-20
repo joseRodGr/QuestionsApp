@@ -17,3 +17,7 @@
     background: lightgreen;
     font-weight: bold;
 }
+
+.forbidden{
+    cursor: no-drop;
+}

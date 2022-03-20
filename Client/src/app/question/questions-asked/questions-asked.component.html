@@ -1,7 +1,7 @@
 <div class="container">
         <div class="title">
             <h2>Asked Questions</h2>
-            <button class="btn">Add new question</button>
+            <button class="btn" routerLink="/question-panel/create">Add new question</button>
         </div>
         <div class="question-header">
             <span>User</span>
@@ -10,7 +10,7 @@
         </div>
         <div class="questions-content">
             <div class="question-container" *ngFor="let question of questions">
-                <app-question-box [question]="question"></app-question-box>
+                <app-question-box [question]="question" [type]="'asked'"></app-question-box>
             </div>
         </div>
 </div>

@@ -1,8 +1,10 @@
+
 .question-info{
     display: flex;
     justify-content: space-between;
     background: #eee;
     padding: 2rem;
+    align-items: center;
     
 }
 
@@ -10,6 +12,12 @@
     font-size: 1.5rem;
     font-weight: 600;
     
+}
+
+.question-info .content span{
+    font-size: 1rem;
+    color: rgb(52, 114, 231);
+    font-weight: 500;
 }
 
 .question-info .username span{
@@ -37,15 +45,19 @@
     margin-top: 1rem;
 }
 
-.answer-button .btn{
+.answers-info .answer-button .btn{
     background: cornflowerblue;
     font-size: 1rem;
 }
 
+.forbidden{
+    cursor:no-drop;
+}
+
 .open{
-    color: green;
+    color: rgb(52, 114, 231);
 }
 
 .closed{
-    color: orange;
+    color: #1117;
 }

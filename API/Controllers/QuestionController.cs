@@ -66,7 +66,6 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<QuestionDto>> CreateQuestion(QuestionCreateDto questionCreateDto)
         {
-
             var question = _mapper.Map<Question>(questionCreateDto);
             question.CreatorId = User.GetId();
 
@@ -81,12 +80,12 @@ namespace API.Controllers
             return BadRequest("Problem ocurred adding question");
         }
 
-        [HttpPost("{username}")]
+        [HttpPost("share/{username}")]
         public async Task<IActionResult> ShareQuestionToUser(string username, [FromQuery] int id)
         {
             var userShared = await _userManager.FindByNameAsync(username);
 
-            if(userShared == null) NotFound("Could not find user to share");
+            if(userShared == null) return NotFound("Could not reach the user " + username);
 
             var question = await _unitOfWork.QuestionRepository.GetQuestionAsked(id);
 
@@ -94,8 +93,11 @@ namespace API.Controllers
 
             if(question.Creator.UserName != User.GetUsername()) return Unauthorized();
 
+            if(await _unitOfWork.AnswerRepository.getUserQuestion(userShared.Id, question.Id) != null) 
+                return BadRequest($"This question has already been shared to {username}");
+            
             if(!question.Shared) question.Shared = true;
-    
+
             var userQuestion = new UserQuestion{
                 UserId = userShared.Id,
                 QuestionId = question.Id
@@ -129,7 +131,7 @@ namespace API.Controllers
         }
 
         [HttpPut("open-close-question/{id}")]
-        public async Task<IActionResult> CloseQuestion(int id)
+        public async Task<IActionResult> ToggleQuestion(int id)
         {
             var question = await _unitOfWork.QuestionRepository.GetQuestionAsked(id);
 

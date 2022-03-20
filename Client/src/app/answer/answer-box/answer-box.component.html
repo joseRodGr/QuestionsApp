@@ -6,8 +6,15 @@
                 {{answer.content}}
             </div>
             <div *ngIf="isEdit" class="edit">
-                <form #editForm>
-                    <input type="text" #answerInput placeholder="Enter the answer">
+                <form #editForm="ngForm" (ngSubmit)="editAnswer()">
+                    <input 
+                        type="text"
+                        name="newAnswer" 
+                        #answerInput 
+                        placeholder="Enter the answer" 
+                        [(ngModel)]="newAnswer"
+                        required 
+                    >
                     <button type="submit">Edit</button>
                 </form>
             </div>
@@ -17,7 +24,7 @@
         </div>
         <div class="buttons">
             <button (click)="invertEdit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button mat-raised-button (click)="openDialog()"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button (click)="openDialog()"><i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
     </a>
 </div>

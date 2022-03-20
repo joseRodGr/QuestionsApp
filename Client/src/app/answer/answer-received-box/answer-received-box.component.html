@@ -1,5 +1,5 @@
 <div *ngIf="answer" [class.selected]="isSelected">
-    <a class="answer" [class.selected]="isSelected" (click)="chooseAnswer()">
+    <a class="answer" [class.selected]="isSelected" (click)="(hasAnswered ? $event.stopPropagation():chooseAnswer())" [class.forbidden]="hasAnswered">
         <div class="content">
             {{answer.content}}
         </div>

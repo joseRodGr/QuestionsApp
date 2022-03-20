@@ -22,7 +22,9 @@
             </div>
         </div>
         <div class="buttons">
-            <button (click)="invertEdit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button mat-raised-button (click)="invertEdit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button mat-raised-button (click)="openDialogWarning()"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button mat-raised-button (click)="openDialogShare()"><i class="fa fa-share" aria-hidden="true"></i></button>
         </div>
     </div>
     <div class="answer-header">
@@ -34,10 +36,13 @@
     </div>
     <div class="answers-info">
         <div *ngFor="let answer of question.answers" class="answer-container">
-            <app-answer-box [answer]="answer"></app-answer-box>
+            <app-answer-box [answer]="answer" (onDeleted)="deleteAnswerBox($event)"></app-answer-box>
         </div>
     </div>
     <div class="button-container">
-        <button class="btn">Add Answer</button>
+        <button class="btn" (click)="openDialogCreate()">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Answer</span> 
+        </button>
     </div>
 </div>

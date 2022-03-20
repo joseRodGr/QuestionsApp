@@ -1,0 +1,24 @@
+.container{
+    background: #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+    padding: 1rem;
+    border-left: 5px solid cornflowerblue;
+}
+
+.deleted-button button{
+    border: none;
+    cursor: pointer;
+    
+}
+
+.deleted-button button i{
+    font-size: 1.2rem;
+    color: #111b;
+}
+
+.deleted-button button i:hover{
+    color: cornflowerblue;
+}
