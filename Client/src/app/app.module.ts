@@ -27,6 +27,11 @@ import { RegisterComponent } from './register/register.component';
 import { CreateDialogComponent } from './_dialogs/create-dialog/create-dialog.component';
 import { ShareDialogComponent } from './_dialogs/share-dialog/share-dialog.component';
 import { GenericBoxComponent } from './_dialogs/generic-box/generic-box.component';
+import { ToastrModule } from 'ngx-toastr';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { NotFoundComponent } from './_errors/not-found/not-found.component';
+import { ErrorTestingComponent } from './_errors/error-testing/error-testing.component';
+import { ServerErrorComponent } from './_errors/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,10 @@ import { GenericBoxComponent } from './_dialogs/generic-box/generic-box.componen
     RegisterComponent,
     CreateDialogComponent,
     ShareDialogComponent,
-    GenericBoxComponent
+    GenericBoxComponent,
+    NotFoundComponent,
+    ErrorTestingComponent,
+    ServerErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -57,10 +65,14 @@ import { GenericBoxComponent } from './_dialogs/generic-box/generic-box.componen
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    })
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

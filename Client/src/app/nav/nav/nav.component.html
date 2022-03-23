@@ -1,12 +1,14 @@
 <header class="header">
     <nav class="navbar">
-        <a href="" class="logo nav-link">
+        <a routerLink="/" class="logo nav-link">
             <i class="fa fa-question-circle"></i>
+            <span>VotingApp</span>
         </a>
         <ul *ngIf="(accountService.currentUser$ | async) === null" class="menu">
-            <li class="nav-item"><a href="" class="nav-link">Caracteristicas</a></li>
-            <li class="nav-item"><a href="" class="nav-link">Soporte</a></li>
-            <li class="nav-item"><a href="" class="nav-link">Contacto</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Support</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a routerLink="/error-testing" class="nav-link">Errors</a></li>
         </ul>
         <div class="nav-buttons">
             <ng-container *ngIf="(accountService.currentUser$ | async) === null">

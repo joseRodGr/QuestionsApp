@@ -7,6 +7,7 @@ import { WarningDialogComponent } from 'src/app/_dialogs/warning-dialog/warning-
 import { CreateDialogComponent } from 'src/app/_dialogs/create-dialog/create-dialog.component';
 import { AnswerService } from 'src/app/_services/answer.service';
 import { ShareDialogComponent } from 'src/app/_dialogs/share-dialog/share-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-question-asked-detail',
@@ -22,7 +23,7 @@ export class QuestionAskedDetailComponent implements OnInit{
 
   constructor(private questionService: QuestionService, private route: ActivatedRoute,
       public dialog: MatDialog, private router: Router, 
-      private answerService: AnswerService) { }
+      private answerService: AnswerService, private toastrSvc: ToastrService) { }
 
   ngOnInit(): void {
     this.loadQuestion();
@@ -115,9 +116,7 @@ export class QuestionAskedDetailComponent implements OnInit{
   shareQuestion(usernames: string[]){
     usernames.forEach(x => {
       this.questionService.shareQuestion(x, Number(this.question.id)).subscribe(() => {
-        console.log(`succesfully shared to ${x}`)
-      }, error => {
-        console.log(error);
+        this.toastrSvc.success(`Succesfully shared to ${x}`);
       })
     })
   }

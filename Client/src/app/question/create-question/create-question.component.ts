@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CanComponentLeave } from 'src/app/_helpers/canComponentLeave';
 import { QuestionService } from 'src/app/_services/question.service';
 
 
@@ -9,13 +11,20 @@ import { QuestionService } from 'src/app/_services/question.service';
   templateUrl: './create-question.component.html',
   styleUrls: ['./create-question.component.css']
 })
-export class CreateQuestionComponent implements OnInit {
+export class CreateQuestionComponent implements OnInit, CanComponentLeave {
 
   createForm!: FormGroup;
   answers: any[] = [];
 
   constructor(private fb: FormBuilder, private questionService: QuestionService,
-      private router: Router) { }
+      private router: Router, private toastSvc: ToastrService) { }
+  
+  canLeave(): boolean {
+    if(this.createForm.dirty && this.answers.length > 0){
+      return confirm('You have some unsaved changes. Any unsaved changes will be lost.');
+    }
+    return true;
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -43,8 +52,13 @@ export class CreateQuestionComponent implements OnInit {
     if(this.createForm.controls.question.value){
         const content = this.createForm.controls.question.value;
         this.questionService.createQuestion({content, answers: this.answers}).subscribe(() => {
+          this.createForm.reset();
+          this.answers = [];
           this.router.navigateByUrl('/question-panel/asked');
+          this.toastSvc.success('Question created successfully');
         })
+    }else{
+      this.toastSvc.warning('Complete question field')
     }
   }
 

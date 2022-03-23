@@ -1,5 +1,6 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AnswerReceivedBoxComponent } from 'src/app/answer/answer-received-box/answer-received-box.component';
 import { Question } from 'src/app/_models/question';
 import { AnswerService } from 'src/app/_services/answer.service';
@@ -17,7 +18,7 @@ export class QuestionReceivedDetailComponent implements OnInit {
   @ViewChildren(AnswerReceivedBoxComponent) answerBoxes! : QueryList<AnswerReceivedBoxComponent>;
 
   constructor(private questionService: QuestionService, private route: ActivatedRoute,
-    private answerService: AnswerService) { }
+    private answerService: AnswerService, private toastrSvc: ToastrService) { }
 
   ngOnInit(): void {
     this.loadQuestion();
@@ -51,6 +52,7 @@ export class QuestionReceivedDetailComponent implements OnInit {
     if(this.answerIdSelected){
       this.answerService.chooseAnswer(Number(this.answerIdSelected)).subscribe(() => {
         this.question.hasAnswered = true;
+        this.toastrSvc.success('Answer saved successfully')
       })
     }
   }

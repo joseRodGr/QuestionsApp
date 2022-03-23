@@ -1,11 +1,10 @@
-
 <div class="container">
     <form [formGroup]="createForm" (ngSubmit)="createForm.valid && addAnswer(createForm.controls.answer.value)" >
         <div class="form-group">
-            <input class="box" type="text" placeholder="Write the question" formControlName="question">
+            <input class="box" type="text" placeholder="The question" formControlName="question">
         </div>
         <div class="form-group">
-            <input class="box box-answer" type="text" placeholder="Write a posible answer" formControlName="answer">
+            <input class="box box-answer" type="text" placeholder="Posible answer" formControlName="answer">
         </div>
         <div class="form-group">
             <button type="submit" class="btn">
