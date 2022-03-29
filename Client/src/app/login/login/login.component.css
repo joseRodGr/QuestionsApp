@@ -43,3 +43,16 @@
     width: 100%;
     margin-top: 2rem;
 }
+
+form .forgot-container{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.forgot-container a{
+    text-decoration: none;
+}
+
+.forgot-container a:hover{
+    color: cornflowerblue;
+}

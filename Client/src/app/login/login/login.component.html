@@ -1,5 +1,5 @@
 <div class="form-container">
-    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+    <form #loginForm="ngForm" (ngSubmit)="submitLogin()" autocomplete="off">
         <h1>Sign in</h1>
         
         <div class="form-group" >
@@ -35,5 +35,8 @@
         </div>
 
         <button type="submit" class="btn">Login</button>
+        <div class="forgot-container">
+            <a routerLink="/forgot-password">Forgot Password?</a>
+        </div>
     </form>
 </div>

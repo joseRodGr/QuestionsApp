@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home/home.component';
 import { LoginComponent } from './login/login/login.component';
 import { MainPanelComponent } from './main/main-panel/main-panel.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
 
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'question-panel', component: MainPanelComponent, 
     runGuardsAndResolvers: 'always',

@@ -18,3 +18,25 @@
     cursor: pointer;
 }
 
+/* messages after register and forgot */
+.container .successful-message{
+    text-align: center;
+}
+
+.successful-message i{
+    font-size: 2.5rem;
+    padding: 1rem;
+}
+
+.successful-message h1{
+    margin-bottom: .5rem;
+}
+
+.successful-message p{
+    font-size: 1.2rem;
+    font-weight: 400;
+    padding: .5rem;
+    color: #eee;
+    border-radius: .5rem;
+}
+

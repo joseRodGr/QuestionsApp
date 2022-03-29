@@ -1,4 +1,54 @@
 <div class="container">
-    <p>register works!</p>
+    <form [formGroup]="registerForm" #regForm="ngForm" (ngSubmit)="submitRegister()" *ngIf="!registerSuccessful"  autocomplete="off">
+        
+        <h1>Register account</h1>
+
+        <mat-form-field class="form-group">
+            <input class="box" matInput type="text" formControlName="username" placeholder="Username">
+            <mat-error *ngIf="username?.invalid && username?.touched">
+                <span>Username field is required</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+            <input class="box" matInput type="email" formControlName="email" placeholder="Email">
+            <mat-error *ngIf="email?.errors?.required && email?.touched">
+                <span>Email field is required</span> 
+            </mat-error>
+            <mat-error *ngIf="email?.errors?.email && email?.touched">
+                <span>Email does not have a good format</span> 
+            </mat-error>
+        </mat-form-field>
+ 
+        <mat-form-field class="form-group">
+            <input class="box" matInput type="password" formControlName="password" placeholder="Password">
+            <mat-error *ngIf="password?.invalid && password?.touched">
+                <span>Password field is required</span> 
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+            <input class="box" matInput type="password" formControlName="confirmPassword" placeholder="Confirm password">
+            <mat-error *ngIf="confirmPassword?.errors?.required && confirmPassword?.touched">
+                <span>Confirm password field is required</span> 
+            </mat-error>
+            <mat-error *ngIf="confirmPassword?.touched && registerForm?.errors?.valuesDoNotMatch">
+                <span>Passwords do not match</span>
+            </mat-error>
+        </mat-form-field>
+       
+        <!-- <button mat-raised-button [disabled]="registerForm.invalid" type="submit"> -->
+        <button mat-raised-button type="submit">
+            Let's do it
+        </button>
+    </form>
+
+    <div class="successful-message" *ngIf="registerSuccessful">
+        <div class="icon">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </div>
+        <h1>We send you an email</h1>
+        <p>Check your email to confirm your account</p>
+    </div>
 </div>
 

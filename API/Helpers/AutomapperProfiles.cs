@@ -24,6 +24,7 @@ namespace API.Helpers
             CreateMap<QuestionUpdateDto, Question>();
 
             CreateMap<RegisterDto, AppUser>();
+
             CreateMap<AnswerDto, Answer>();
             CreateMap<Answer, AnswerDto>();
             CreateMap<AnswerContentDto, Answer>();

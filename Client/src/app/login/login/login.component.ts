@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Login } from 'src/app/_models/login';
 import { AccountService } from 'src/app/_services/account.service';
+import { validateFieldsNgForm } from 'src/app/_services/utilities';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { AccountService } from 'src/app/_services/account.service';
 export class LoginComponent implements OnInit {
 
   model: any = {};
+  @ViewChild('loginForm') loginForm!: NgForm;
+
   constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,6 +24,14 @@ export class LoginComponent implements OnInit {
       this.accountService.login(this.model).subscribe(response => {
         this.router.navigateByUrl('/question-panel');  
       });
+  }
+
+  submitLogin(){
+    if(this.loginForm.valid){
+      this.login();
+    }else{
+      validateFieldsNgForm(this.loginForm);
+    }
   }
 
 }

@@ -33,8 +33,12 @@ export class AccountService {
     this.currenUserSource.next(null);
   }
 
-  register(){
-    
+  register(model: any){
+    return this.http.post(this.baseUrl + 'account/register', model);
+  }
+
+  forgotPassword(email: string){
+    return this.http.post(this.baseUrl + 'account/forgot-password/' + email, {});
   }
 
   setCurrentUser(user:User){

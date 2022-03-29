@@ -32,6 +32,7 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './_errors/not-found/not-found.component';
 import { ErrorTestingComponent } from './_errors/error-testing/error-testing.component';
 import { ServerErrorComponent } from './_errors/server-error/server-error.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ServerErrorComponent } from './_errors/server-error/server-error.compon
     GenericBoxComponent,
     NotFoundComponent,
     ErrorTestingComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

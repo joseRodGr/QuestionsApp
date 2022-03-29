@@ -94,7 +94,7 @@ namespace API.Controllers
             if(question.Creator.UserName != User.GetUsername()) return Unauthorized();
 
             if(await _unitOfWork.AnswerRepository.getUserQuestion(userShared.Id, question.Id) != null) 
-                return BadRequest($"This question has already been shared to {username}");
+                return BadRequest($"This question has already been shared with {username}");
             
             if(!question.Shared) question.Shared = true;
 
