@@ -1,5 +1,7 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using API.Dtos;
 using API.Interfaces;
 using API.Models;
@@ -41,13 +43,31 @@ namespace API.Controllers
 
             user.UserName = registerDto.Username.ToLower();
 
-            var createResult = await _userManager.CreateAsync(user, registerDto.Password);
+            using(var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled)){
 
-            if (!createResult.Succeeded) return BadRequest(createResult.Errors);
+                try{
 
-            var roleResult = await _userManager.AddToRoleAsync(user, "User");
+                    var createResult = await _userManager.CreateAsync(user, registerDto.Password);
+                    if (!createResult.Succeeded){
+                        transaction.Dispose();
+                        return BadRequest(createResult.Errors);
+                    } 
 
-            if (!roleResult.Succeeded) return BadRequest(roleResult.Errors);
+                    var roleResult = await _userManager.AddToRoleAsync(user, "User");
+                    if (!roleResult.Succeeded){
+                        transaction.Dispose();
+                        return BadRequest(roleResult.Errors);
+                    } 
+                    
+                    transaction.Complete();
+
+                }catch(Exception ex){
+                    
+                    transaction.Dispose();
+                    throw ex;
+                }
+
+            }
 
             // create the confirmation token
             var confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
