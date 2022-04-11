@@ -1,9 +1,8 @@
 <div class="container">
-    <h2 mat-dialog-title>Sharing {{data.title}}</h2>
+    <h2 mat-dialog-title>{{data.title}}</h2>
     <div mat-dialog-content>
         <mat-form-field>
-            <mat-label>{{data.label}}</mat-label>
-            <input matInput [(ngModel)]="data.content" autocomplete="off">
+            <input matInput [(ngModel)]="data.content" placeholder="{{data.label}}" autocomplete="off">
         </mat-form-field>
         <button class="btn-username" mat-button (click)="addUsername(data.content)"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
         <div mat-dialog-content class="usernsames-container" *ngIf="usernames.length > 0">

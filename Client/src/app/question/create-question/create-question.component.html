@@ -1,18 +1,28 @@
 <div class="container">
-    <form [formGroup]="createForm" (ngSubmit)="createForm.valid && addAnswer(createForm.controls.answer.value)" >
+    <form [formGroup]="createForm" (ngSubmit)="submitAddAnswer()" autocomplete="off">
+        
+        <mat-form-field class="form-group">
+            <input matInput type="text" placeholder="The question" formControlName="question">
+            <mat-error *ngIf="question?.errors?.required && question?.touched">
+                <span>The question field is required</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+            <input matInput type="text" placeholder="Posible answer" formControlName="answer" >
+            <mat-error *ngIf="answer?.errors?.required && answer?.touched">
+                <span>The answer field is required</span>
+            </mat-error>
+        </mat-form-field>
+        
         <div class="form-group">
-            <input class="box" type="text" placeholder="The question" formControlName="question">
-        </div>
-        <div class="form-group">
-            <input class="box box-answer" type="text" placeholder="Posible answer" formControlName="answer">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn">
+            <button mat-raised-button type="submit" class="btn">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 <span>Answer</span>    
             </button>
         </div>
-    </form> 
+    </form>
+
     <div class="answers-container" *ngIf="answers.length > 0">
         <div class="separator">Answers added</div>
         <div class="answer-container" *ngFor="let answer of answers">

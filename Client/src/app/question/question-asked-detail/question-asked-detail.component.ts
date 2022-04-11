@@ -43,7 +43,7 @@ export class QuestionAskedDetailComponent implements OnInit{
 
   openDialogCreate(){
     const dialogRef = this.dialog.open(CreateDialogComponent, {
-      data: {title: 'answer', content: null}
+      data: {title: 'Create new answer', label: 'Enter a new answer', content: null}
     })
 
     dialogRef.afterClosed().subscribe(result => {
@@ -55,7 +55,7 @@ export class QuestionAskedDetailComponent implements OnInit{
 
   openDialogShare(){
     const dialogRef = this.dialog.open(ShareDialogComponent, {
-      data: {title: 'question', label: 'Enter an username', content: null}
+      data: {title: 'Sharing question', label: 'Enter an username', content: null}
     })
 
     dialogRef.afterClosed().subscribe(result => {

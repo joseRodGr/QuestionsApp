@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CanComponentLeave } from 'src/app/_helpers/canComponentLeave';
 import { QuestionService } from 'src/app/_services/question.service';
+import { validateAllFormFields } from 'src/app/_services/utilities';
 
 
 @Component({
@@ -37,10 +38,26 @@ export class CreateQuestionComponent implements OnInit, CanComponentLeave {
     })
   }
 
+  get question(){
+     return this.createForm.get('question');
+  }
+
+  get answer(){
+    return this.createForm.get('answer');
+  }
+
   addAnswer(answer: string){
     if(!this.answers.find(x => x.content === answer)){
       this.answers.push({content: answer});
       this.createForm.controls.answer.reset();
+    }
+  }
+
+  submitAddAnswer(){
+    if(this.createForm.valid){
+      this.addAnswer(this.answer?.value);
+    }else{
+      validateAllFormFields(this.createForm);
     }
   }
 
